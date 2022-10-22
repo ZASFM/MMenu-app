@@ -3,9 +3,13 @@ import Menu from './Menu';
 import Categories from './Categories';
 import items from './data';
 
+//Dynamic categories:
+const allCategories=['all', ...new Set(items.map(item=>item.category))];
+
 function App() {
   const [menuItems,setMenuItems]=useState(items);
   const [categories,setCategories]=useState([]);
+  setCategories(allCategories);
 
   const filter=(category)=>{
      if(category==='all'){
@@ -26,6 +30,7 @@ function App() {
             <div className='underline'></div>
          </div>
          <Categories
+            categories={categories}
             filterItems={filter}
          />
          <Menu
